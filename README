@@ -1,0 +1,16 @@
+Example of a CRUD grid using ExtJS and Spring Framework.
+
+Libs used in this project:
+Spring MVC Framework
+JSON lib
+ExtJS 3.1.1 - including RowEditor Plugin and Datadrop (ExtJS 3rd party plugin).
+
+Also, this example demonstrates how to save data from a excel file
+(take a look at http://github.com/loiane/extjs-grid-dragdrop-excel).
+
+Download this example and run it in a java app server. (I used TomCat)
+http://localhost:8080/extjs-crud-grid/
+
+For more examples and tutorials:
+http://loianegroner.com (English)
+http://loiane.com (Portuguese - BR)

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean name="util" class="com.loiane.util.Util" />
+
+	<bean name="contactDAO" class="com.loiane.dao.ContactDAO" >
+		<property name="util"><ref bean="util"/></property>
+	</bean>
+	
+	<bean name="contactService" class="com.loiane.service.ContactService" >
+		<property name="contactDAO"><ref bean="contactDAO"/></property> 
+		<property name="util"><ref bean="util"/></property>
+	</bean>
+
+	<bean id="contactController" class="com.loiane.web.ContactController">
+		<property name="contactService"><ref bean="contactService"/></property> 
+	</bean>
+	
+	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" >
+		<property name="mappings">
+			<props>
+				<prop key="/contact/*">contactController</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- misc -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	    <property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- json -->
+	<bean id="xmlFileViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
+            <property name="location">
+                  <value>/WEB-INF/views.xml</value>
+            </property>
+            <property name="order">
+                  <value>1</value>
+            </property>
+      </bean>   
+      
+</beans>
